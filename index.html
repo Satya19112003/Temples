@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Darshan - Hindu Temples Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --saffron: #FF9933;
+            --sacred: #8B0000;
+            --gold: #FFD700;
+            --temple: #8B4513;
+            --divine: #4B0082;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(to bottom, #FFF8E1, #FFFFFF);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background-color: var(--saffron);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon i {
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--sacred);
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--saffron);
+        }
+
+        nav a.active {
+            color: var(--sacred);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--sacred);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 8px 15px 8px 35px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--saffron);
+            width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero-slider {
+            height: 100%;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+        }
+
+        .slide-1 {
+            background-image: url('https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+        }
+
+        .slide-2 {
+            background-image: url('https://images.unsplash.com/photo-1593693399741-49e46c5f3e5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+        }
+
+        .slide-3 {
+            background-image: url('https://images.unsplash.com/photo-1587135941948-670b381f08ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--saffron);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--saffron);
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--saffron);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #333;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(to right, var(--sacred), var(--saffron));
+            color: white;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .stat-icon i {
+            font-size: 30px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Temples Section */
+        .temples {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--sacred);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .sacred {
+            color: var(--saffron);
+        }
+
+        .temples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .temple-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .temple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .temple-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .temple-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .temple-card:hover .temple-image img {
+            transform: scale(1.1);
+        }
+
+        .temple-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--sacred);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .temple-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--gold);
+            color: var(--sacred);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .temple-content {
+            padding: 20px;
+        }
+
+        .temple-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .temple-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .temple-era {
+            background-color: #FFF8E1;
+            color: #B8860B;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .temple-details {
+            margin-bottom: 15px;
+        }
+
+        .temple-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .temple-detail i {
+            color: var(--saffron);
+            margin-right: 10px;
+            width: 16px;
+        }
+
+        .temple-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .temple-tag {
+            background-color: #F5F5F5;
+            color: #666;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .temple-tag.architecture {
+            background-color: #FFEBEE;
+            color: var(--sacred);
+        }
+
+        .temple-tag.style {
+            background-color: #FFF3E0;
+            color: var(--saffron);
+        }
+
+        .temple-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .temple-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .best-time {
+            color: var(--sacred);
+            font-weight: 600;
+        }
+
+        /* Festivals Section */
+        .festivals {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #FFF8E1, #FFFFFF);
+        }
+
+        .festivals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .festival-card {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 153, 51, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .festival-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .festival-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .festival-icon {
+            background-color: var(--sacred);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .festival-icon i {
+            color: white;
+            font-size: 20px;
+        }
+
+        .festival-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .festival-month {
+            background-color: var(--saffron);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .festival-details {
+            margin-bottom: 15px;
+        }
+
+        .festival-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .festival-detail i {
+            color: var(--sacred);
+            margin-right: 10px;
+            width: 16px;
+        }
+
+        .festival-temples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .festival-temple {
+            background-color: white;
+            color: var(--sacred);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid var(--sacred);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+        }
+
+        .gallery-slider {
+            margin-bottom: 40px;
+        }
+
+        .gallery-slide {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-slide:hover img {
+            transform: scale(1.1);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-slide:hover .slide-overlay {
+            transform: translateY(0);
+        }
+
+        .slide-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .slide-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .gallery-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .gallery-action {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .gallery-action:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Scriptures Section */
+        .scriptures {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(255, 153, 51, 0.05));
+        }
+
+        .scriptures-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .scripture-card {
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            text-align: left;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .scripture-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .scripture-card:nth-child(1) {
+            background-color: var(--sacred);
+        }
+
+        .scripture-card:nth-child(2) {
+            background-color: var(--saffron);
+        }
+
+        .scripture-card:nth-child(3) {
+            background-color: var(--gold);
+            color: #333;
+        }
+
+        .scripture-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .scripture-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .scripture-verses {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .scripture-description {
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        .scripture-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .scripture-card:nth-child(1) .scripture-btn {
+            color: var(--sacred);
+        }
+
+        .scripture-card:nth-child(2) .scripture-btn {
+            color: var(--saffron);
+        }
+
+        .scripture-card:nth-child(3) .scripture-btn {
+            color: var(--gold);
+        }
+
+        .scripture-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, var(--sacred), #333);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            background-color: var(--saffron);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo-icon i {
+            color: white;
+            font-size: 20px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--saffron);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--saffron);
+            padding-left: 5px;
+        }
+
+        .footer-links a::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--saffron);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .contact-info i {
+            color: var(--saffron);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .newsletter {
+            margin-top: 20px;
+        }
+
+        .newsletter-input {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-input button {
+            background-color: var(--saffron);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-input button:hover {
+            background-color: #ff8c00;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .sanskrit-text {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .temples-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .festivals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .scriptures-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-actions .search-box {
+                display: none;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .temples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scriptures-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .festivals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Divine Darshan</h1>
+                    <p>Sacred Hindu Temples</p>
+                </div>
+            </a>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#temples">Temples</a></li>
+                    <li><a href="#festivals">Festivals</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#scriptures">Scriptures</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search temples...">
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-bg slide-1"></div>
+                        <div class="hero-content">
+                            <h1>Experience Divine Presence</h1>
+                            <h2>Sacred Journeys to Ancient Temples</h2>
+                            <p>Discover the spiritual heritage of Hinduism through magnificent temples across India</p>
+                            <div class="hero-buttons">
+                                <a href="#temples" class="btn">Explore Temples</a>
+                                <a href="#" class="btn btn-secondary">Virtual Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-bg slide-2"></div>
+                        <div class="hero-content">
+                            <h1>Architectural Marvels</h1>
+                            <h2>Centuries of Devotion Carved in Stone</h2>
+                            <p>Explore intricate carvings and divine architecture of sacred temples</p>
+                            <div class="hero-buttons">
+                                <a href="#temples" class="btn">Explore Temples</a>
+                                <a href="#" class="btn btn-secondary">Virtual Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-bg slide-3"></div>
+                        <div class="hero-content">
+                            <h1>Spiritual Enlightenment</h1>
+                            <h2>Find Peace in Sacred Spaces</h2>
+                            <p>Immerse yourself in the tranquil atmosphere of holy shrines</p>
+                            <div class="hero-buttons">
+                                <a href="#temples" class="btn">Explore Temples</a>
+                                <a href="#" class="btn btn-secondary">Virtual Tour</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Sacred Temples</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Years of History</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Virtual Darshan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">Devotees Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temples Section -->
+    <section id="temples" class="temples">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sacred <span class="sacred">Temples</span></h2>
+                <p>Discover the most revered Hindu temples across India, each with unique architecture and spiritual significance</p>
+            </div>
+            
+            <div class="temples-grid">
+                <!-- Temple Card 1 -->
+                <div class="temple-card">
+                    <div class="temple-image">
+                        <div class="temple-badge">Uttar Pradesh</div>
+                        <div class="temple-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Kashi Vishwanath Temple">
+                    </div>
+                    <div class="temple-content">
+                        <div class="temple-header">
+                            <div class="temple-name">Kashi Vishwanath Temple</div>
+                            <div class="temple-era">11th Century</div>
+                        </div>
+                        <div class="temple-details">
+                            <div class="temple-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Varanasi, Uttar Pradesh</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-clock"></i>
+                                <span>3:00 AM - 11:00 PM</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-users"></i>
+                                <span>Lord Shiva Temple</span>
+                            </div>
+                        </div>
+                        <p class="temple-description">One of the most famous Hindu temples dedicated to Lord Shiva, located on the western bank of the holy river Ganga.</p>
+                        <div class="temple-tags">
+                            <span class="temple-tag architecture">Nagara Style</span>
+                            <span class="temple-tag style">North Indian</span>
+                        </div>
+                        <div class="temple-footer">
+                            <div class="temple-time">
+                                Best Time: <span class="best-time">Oct-Mar</span>
+                            </div>
+                            <a href="#" class="btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Temple Card 2 -->
+                <div class="temple-card">
+                    <div class="temple-image">
+                        <div class="temple-badge">Tamil Nadu</div>
+                        <div class="temple-rating">
+                            <i class="fas fa-star"></i> 4.8
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1587135941948-670b381f08ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Meenakshi Temple">
+                    </div>
+                    <div class="temple-content">
+                        <div class="temple-header">
+                            <div class="temple-name">Meenakshi Temple</div>
+                            <div class="temple-era">6th Century</div>
+                        </div>
+                        <div class="temple-details">
+                            <div class="temple-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Madurai, Tamil Nadu</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-clock"></i>
+                                <span>5:00 AM - 12:30 PM, 4:00 PM - 9:30 PM</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-users"></i>
+                                <span>Goddess Meenakshi Temple</span>
+                            </div>
+                        </div>
+                        <p class="temple-description">Historic temple complex with 14 gateway towers covered in thousands of colorful statues.</p>
+                        <div class="temple-tags">
+                            <span class="temple-tag architecture">Dravidian Style</span>
+                            <span class="temple-tag style">South Indian</span>
+                        </div>
+                        <div class="temple-footer">
+                            <div class="temple-time">
+                                Best Time: <span class="best-time">Oct-Mar</span>
+                            </div>
+                            <a href="#" class="btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Temple Card 3 -->
+                <div class="temple-card">
+                    <div class="temple-image">
+                        <div class="temple-badge">Odisha</div>
+                        <div class="temple-rating">
+                            <i class="fas fa-star"></i> 4.7
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1524307875964-4c93d5c97229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Jagannath Temple">
+                    </div>
+                    <div class="temple-content">
+                        <div class="temple-header">
+                            <div class="temple-name">Jagannath Temple</div>
+                            <div class="temple-era">12th Century</div>
+                        </div>
+                        <div class="temple-details">
+                            <div class="temple-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Puri, Odisha</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-clock"></i>
+                                <span>5:00 AM - 10:00 PM</span>
+                            </div>
+                            <div class="temple-detail">
+                                <i class="fas fa-users"></i>
+                                <span>Lord Jagannath Temple</span>
+                            </div>
+                        </div>
+                        <p class="temple-description">Famous for its annual Rath Yatra festival. One of the Char Dham pilgrimage sites.</p>
+                        <div class="temple-tags">
+                            <span class="temple-tag architecture">Kalinga Style</span>
+                            <span class="temple-tag style">East Indian</span>
+                        </div>
+                        <div class="temple-footer">
+                            <div class="temple-time">
+                                Best Time: <span class="best-time">Nov-Feb</span>
+                            </div>
+                            <a href="#" class="btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="btn">View All Temples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festivals Section -->
+    <section id="festivals" class="festivals">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming <span class="sacred">Festivals</span></h2>
+                <p>Celebrate divine occasions with traditional rituals and spiritual gatherings</p>
+            </div>
+            
+            <div class="festivals-grid">
+                <!-- Festival Card 1 -->
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="festival-title">Maha Shivaratri</div>
+                        <div class="festival-month">Feb-Mar</div>
+                    </div>
+                    <div class="festival-details">
+                        <div class="festival-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>March 8, 2024</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>1 Night</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Night of Shiva</span>
+                        </div>
+                    </div>
+                    <p class="festival-description">Great night of Lord Shiva, observed with fasting, meditation, and night-long vigil.</p>
+                    <div class="festival-temples">
+                        <span class="festival-temple">Kashi Vishwanath</span>
+                        <span class="festival-temple">Somnath</span>
+                        <span class="festival-temple">Amarnath</span>
+                    </div>
+                    <a href="#" class="btn">Festival Details</a>
+                </div>
+                
+                <!-- Festival Card 2 -->
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="festival-title">Diwali</div>
+                        <div class="festival-month">Oct-Nov</div>
+                    </div>
+                    <div class="festival-details">
+                        <div class="festival-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>November 1, 2024</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>5 Days</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Festival of Lights</span>
+                        </div>
+                    </div>
+                    <p class="festival-description">Celebration of light over darkness, knowledge over ignorance, and good over evil.</p>
+                    <div class="festival-temples">
+                        <span class="festival-temple">Jagannath Temple</span>
+                        <span class="festival-temple">Swaminarayan Akshardham</span>
+                        <span class="festival-temple">Birla Mandir</span>
+                    </div>
+                    <a href="#" class="btn">Festival Details</a>
+                </div>
+                
+                <!-- Festival Card 3 -->
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="festival-title">Janmashtami</div>
+                        <div class="festival-month">Aug-Sep</div>
+                    </div>
+                    <div class="festival-details">
+                        <div class="festival-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>August 26, 2024</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>2 Days</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Krishna Birthday</span>
+                        </div>
+                    </div>
+                    <p class="festival-description">Celebration of Lord Krishna's birth with fasting, night vigil, and devotional songs.</p>
+                    <div class="festival-temples">
+                        <span class="festival-temple">Dwarkadhish</span>
+                        <span class="festival-temple">ISKCON</span>
+                        <span class="festival-temple">Banke Bihari</span>
+                    </div>
+                    <a href="#" class="btn">Festival Details</a>
+                </div>
+                
+                <!-- Festival Card 4 -->
+                <div class="festival-card">
+                    <div class="festival-header">
+                        <div class="festival-icon">
+                            <i class="fas fa-star-and-crescent"></i>
+                        </div>
+                        <div class="festival-title">Navratri</div>
+                        <div class="festival-month">Sep-Oct</div>
+                    </div>
+                    <div class="festival-details">
+                        <div class="festival-detail">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>October 3-12, 2024</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>9 Nights</span>
+                        </div>
+                        <div class="festival-detail">
+                            <i class="fas fa-users"></i>
+                            <span>Worship of Durga</span>
+                        </div>
+                    </div>
+                    <p class="festival-description">Nine nights dedicated to the worship of Goddess Durga and her various forms.</p>
+                    <div class="festival-temples">
+                        <span class="festival-temple">Vaishno Devi</span>
+                        <span class="festival-temple">Kamakhya</span>
+                        <span class="festival-temple">Meenakshi</span>
+                    </div>
+                    <a href="#" class="btn">Festival Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Temple <span class="sacred">Gallery</span></h2>
+                <p>Explore the divine architecture and spiritual ambiance of sacred Hindu temples</p>
+            </div>
+            
+            <div class="gallery-slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Gallery Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="gallery-slide">
+                                <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Kashi Vishwanath Temple">
+                                <div class="slide-overlay">
+                                    <div class="slide-title">Kashi Vishwanath Temple</div>
+                                    <div class="slide-description">Varanasi, Uttar Pradesh</div>
+                                    <div class="gallery-actions">
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-search-plus"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-share-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gallery Slide 2 -->
+                        <div class="swiper-slide">
+                            <div class="gallery-slide">
+                                <img src="https://images.unsplash.com/photo-1587135941948-670b381f08ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Meenakshi Temple">
+                                <div class="slide-overlay">
+                                    <div class="slide-title">Meenakshi Temple</div>
+                                    <div class="slide-description">Madurai, Tamil Nadu</div>
+                                    <div class="gallery-actions">
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-search-plus"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-share-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Gallery Slide 3 -->
+                        <div class="swiper-slide">
+                            <div class="gallery-slide">
+                                <img src="https://images.unsplash.com/photo-1524307875964-4c93d5c97229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Jagannath Temple">
+                                <div class="slide-overlay">
+                                    <div class="slide-title">Jagannath Temple</div>
+                                    <div class="slide-description">Puri, Odisha</div>
+                                    <div class="gallery-actions">
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-search-plus"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                        <a href="#" class="gallery-action">
+                                            <i class="fas fa-share-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scriptures Section -->
+    <section id="scriptures" class="scriptures">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sacred <span class="sacred">Scriptures</span></h2>
+                <p>Explore the timeless wisdom of Hindu scriptures and spiritual texts</p>
+            </div>
+            
+            <div class="scriptures-grid">
+                <!-- Scripture Card 1 -->
+                <div class="scripture-card">
+                    <div class="scripture-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="scripture-title">Bhagavad Gita</h3>
+                    <div class="scripture-verses">700 Verses</div>
+                    <p class="scripture-description">The divine conversation between Krishna and Arjuna</p>
+                    <a href="#" class="scripture-btn">Read Now</a>
+                </div>
+                
+                <!-- Scripture Card 2 -->
+                <div class="scripture-card">
+                    <div class="scripture-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="scripture-title">Ramayana</h3>
+                    <div class="scripture-verses">24,000 Verses</div>
+                    <p class="scripture-description">The epic journey of Lord Rama</p>
+                    <a href="#" class="scripture-btn">Read Now</a>
+                </div>
+                
+                <!-- Scripture Card 3 -->
+                <div class="scripture-card">
+                    <div class="scripture-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3 class="scripture-title">Vedas</h3>
+                    <div class="scripture-verses">20,000+ Verses</div>
+                    <p class="scripture-description">Ancient knowledge and spiritual wisdom</p>
+                    <a href="#" class="scripture-btn">Read Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="footer-logo-text">Divine Darshan</div>
+                    </div>
+                    <p>Connecting devotees with the sacred heritage of Hinduism. Explore ancient temples, participate in virtual darshans, and discover the spiritual richness of our culture.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Temples Directory</a></li>
+                        <li><a href="#">Virtual Darshan</a></li>
+                        <li><a href="#">Puja Booking</a></li>
+                        <li><a href="#">Donations</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Sacred Texts</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Bhagavad Gita</a></li>
+                        <li><a href="#">Ramayana</a></li>
+                        <li><a href="#">Mahabharata</a></li>
+                        <li><a href="#">Vedas</a></li>
+                        <li><a href="#">Upanishads</a></li>
+                        <li><a href="#">Puranas</a></li>
+                    </ul>
+                    <div class="daily-shloka">
+                        <h4>Daily Shloka</h4>
+                        <p>"योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। सिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते॥"</p>
+                        <p class="sanskrit-text">- Bhagavad Gita 2.48</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Divine Darshan Foundation<br>Varanasi, Uttar Pradesh 221001</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@divinedarshan.org</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <p>Get temple updates and festival calendars</p>
+                        <div class="newsletter-input">
+                            <input type="email" placeholder="Your email">
+                            <button>Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 Divine Darshan. All rights reserved. | Made with <i class="fas fa-heart" style="color: #ff4757;"></i> for devotees worldwide</p>
+                <div class="sanskrit-text">
+                    <span>ॐ नमः शिवाय</span> | <span>श्री कृष्णाय नमः</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper for Hero Slider
+        const heroSwiper = new Swiper('.hero .swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+        });
+
+        // Initialize Swiper for Gallery Slider
+        const gallerySwiper = new Swiper('.gallery .swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+            },
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    nav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-input');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                if (emailInput.value) {
+                    alert('Thank you for subscribing to Divine Darshan newsletter!');
+                    emailInput.value = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
